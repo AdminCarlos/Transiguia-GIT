@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../jquerymobile/jquery.mobile-1.4.5.min.css">
+    <script src="../jquery/jquery-1.11.3.min.js"></script>
+    <script src="../jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="../themes/temarojo.min.css" />
+    <link rel="stylesheet" href="../themes/jquery.mobile.icons.min.css" />
+    
+    <meta charset="UTF-8">
+    
+</head>
+<body >
+    
+    <div data-role="page" id="pregunta1">
+        
+        <div data-role="header">
+            <h1 id = "textoPuntaje">Puntaje: 0</h1>
+        </div>
+
+        <div data-role="main" class="ui-content" onload="cambiarPregunta()">
+            <center><p id = "textoPregunta">¿Es Carlos genial?</p></center>
+            <center>
+                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow ui-btn-inline" onclick="p1Evaluar()">Si</a>
+                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow ui-btn-inline" onClick="p1Evaluar()">Por supuesto</a>
+                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow ui-btn-inline" onClick="p1Evaluar()">No</a>
+                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow ui-btn-inline" onClick="p1Evaluar()">Claro que no</a>
+            </center>
+        </div>
+
+    </div> 
+    
+    <div data-role="page" data-dialog="true" id="alerta">
+        <div data-role="main" class="ui-content">
+            <center><p id = "textoAlerta">Placeholder</p></center>
+            <center>
+                <a href="#pregunta1" class = "ui-btn ui-corner-all ui-shadow ui-btn-inline" id = "buttonSiguiente">Siguiente</a>
+            </center>
+        </div>
+    </div>
+    
+    <script>
+        
+        var puntaje = 0;
+        
+        function p1Evaluar() 
+        {
+            puntaje = puntaje + 1;
+            document.getElementById("textoPuntaje").innerHTML = "Puntaje: " + puntaje;
+            document.getElementById("textoAlerta").innerHTML = "Correcto";
+//            if (respuesta == respuestaP1) 
+//            {
+//                puntaje = puntaje + 1;
+//                textoPuntaje.innerHTML = "Puntaje: "+textoPuntaje;
+//                buttonSiguiente.href = "#pregunta2";
+//                buttonSiguiente.innerHTML = "#pregunta2";
+//            }    
+//
+//            else 
+//            {
+//                if (puntaje <= 0) 
+//                {
+//                    textoAlerta.innerHTML = "Perdiste...";
+//                    buttonSiguiente.href = "#paginaPrincipal";
+//                }
+//
+//                else 
+//                {
+//                    puntaje = puntaje - 1;
+//                    textoPuntaje.innerHTML = "Puntaje: "+textoPuntaje; 
+//                    buttonSiguiente.href = "#pregunta2";
+//                }    
+//            }
+
+        }
+    </script>
+    
+    <script>
+        var preguntas = [
+            "¿Pregunta1?",
+            "¿Pregunta2?",
+            "¿Pregunta3?",
+            "¿Pregunta4?",
+            "¿Pregunta5?",
+            "¿Pregunta6?",
+            "¿Pregunta7?",
+            "¿Pregunta8?",
+            "¿Pregunta9?",
+            "¿Pregunta10?",
+            "¿Pregunta11?",
+            "¿Pregunta12?",
+            "¿Pregunta14?",
+            "¿Pregunta15?",
+            "¿Pregunta16?",
+            "¿Pregunta17?",
+            "¿Pregunta18?",
+            "¿Pregunta19?",
+            "¿Pregunta20?"
+        ];
+        
+        function cambiarPregunta() {
+            var randomIndex = Math.floor((Math.random() * 20) + 0);
+            document.getElementById("textoPregunta").innerHTML = preguntas[randomIndex];
+        }
+    </script>
+    
+</body>
+</html>
