@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="jquerymobile/jquery.mobile-1.4.5.min.css">
@@ -8,201 +9,265 @@
     <link rel="stylesheet" href="themes/temarojo.min.css" />
     <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
     <script>
-         $(function() {
-            $( "[data-role = 'header'], [data-role = 'footer']" ).toolbar({ theme: "a" });
-         }); 
+        $(function() {
+            $("[data-role = 'header']").toolbar({
+                theme: "a"
+            });
+        });
     </script>
-    <script src="js/cordova.js"></script>
+
     <meta charset="UTF-8">
-    
+    <script src="js/cordova.js"></script>
 </head>
-<body >
-    
-    <div data-role="page" id="paginaPrincipal">
-        <div data-role="header">
-            <h1>TransiGuía</h1>
-        </div>
-        
-        <div data-role="main" class="ui-content">
-            <center><p>¡Bienvenido al juego de preguntas de TransiGuía!</p></center>
-            <center><p>Presiona el botón para iniciar</p></center>
-            <a href="#pregunta1" class = "ui-btn ui-corner-all ui-shadow" onclick="ponerPuntaje0(), ponerAlertaDefault()">Iniciar</a>
-        </div>
 
-    </div>
-    
-<!--    ESTA ES LA PREGUNTA #1 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
+<body>
     <div data-role="header">
-            <h1 id = "textoPuntaje">Puntaje: 0</h1>
-            <a href="#paginaPrincipal" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-power">Rendirse</a>
+        <h1 id="textoPuntaje">TransiGuía Trivia Game</h1>
+        <a href="#paginaPrincipal" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-power" id="buttonSalir" onclick="salirApp()">Salir</a>
     </div>
-    
-    <div data-role="page" id="pregunta1" class = "pregunta">
-        
-        <div data-role="main" class="ui-content" onload="cambiarPregunta()">
-            <center><p id = "textoPregunta">¿Es Carlos genial?</p></center>
+
+    <div data-role="page" id="paginaPrincipal">
+
+        <div data-role="main" class="ui-content">
             <center>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onclick="esCorrecto()">Si</a>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onClick="esCorrecto()">Por supuesto</a>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onClick="esFalso()">No</a>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onClick="esFalso()">Claro que no</a>
+                <p>¡Bienvenido al juego de preguntas de TransiGuía!</p>
+            </center>
+            <center>
+                <p>Presiona el botón para iniciar</p>
+            </center>
+            <a href="#" class="ui-btn ui-corner-all ui-shadow" onclick="ponerPuntaje0(), ponerAlertaDefault(), cambiarPregunta()" id="buttonIniciar">Iniciar</a>
+        </div>
+
+    </div>
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <!--    ESTA ES LA PREGUNTA #1  Y AQUI TAMBIEN ESTA LA ALERTA QUE TODAS LAS PREGUNTAS USAN-->
+
+
+    <div data-role="page" id="pregunta1" class="pregunta">
+
+        <div data-role="main" class="ui-content">
+            <center>
+                <p id="textoPregunta">¿Es Carlos genial?</p>
+            </center>
+            <center>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onclick="esCorrecto(), cambiarPregunta()">Si</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esCorrecto(), cambiarPregunta()">Por supuesto</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esFalso(), cambiarPregunta()">No</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esFalso(), cambiarPregunta()">Claro que no</a>
             </center>
         </div>
 
     </div>
-    
-    <div data-role="page" data-dialog="true" id="alerta">
+
+    <div data-role="page" data-dialog="true" data-transition="slidefade" id="alerta">
         <div data-role="main" class="ui-content">
-            <center><p id = "textoAlerta">Placeholder</p></center>
             <center>
-                <a href="#pregunta2" class = "ui-btn ui-corner-all ui-shadow ui-btn-inline" id = "buttonSiguiente">Siguiente pregunta</a>
+                <p id="textoAlerta">Placeholder</p>
+            </center>
+            <center>
+                <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" id="buttonSiguiente">Siguiente pregunta</a>
             </center>
         </div>
     </div>
-    
-    <!--    ESTA ES LA PREGUNTA #1 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
-    
+
+    <!--    ESTA ES LA PREGUNTA #1-->
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+
     <!--    ESTA ES LA PREGUNTA #2 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
-    
-    <div data-role="page" id="pregunta2" class = "pregunta">
-        
+
+    <div data-role="page" id="pregunta2" class="pregunta">
+
         <div data-role="main" class="ui-content">
-            <center><p id = "textoPregunta">¿2 + 2 = 5?</p></center>
             <center>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onclick="esCorrecto()">No</a>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onClick="esCorrecto()">Claro que no</a>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onClick="esFalso()">El verdadero resultado</a>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onClick="esFalso()">Einstein lo dice</a>
+                <p id="textoPregunta">¿2 + 2 = 5?</p>
+            </center>
+            <center>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onclick="esCorrecto(), cambiarPregunta()">No</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esCorrecto(), cambiarPregunta()">Claro que no</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esFalso(), cambiarPregunta()">El verdadero resultado</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esFalso(), cambiarPregunta()">Einstein lo dice</a>
             </center>
         </div>
 
     </div>
-    
-    <div data-role="page" data-dialog="true" id="alerta">
-        <div data-role="main" class="ui-content">
-            <center><p id = "textoAlerta">Placeholder</p></center>
-            <center>
-                <a href="#pregunta3" class = "ui-btn ui-corner-all ui-shadow ui-btn-inline" id = "buttonSiguiente" onclick="cambiarPregunta()">Siguiente pregunta</a>
-            </center>
-        </div>
-    </div>
-    
+
     <!--    ESTA ES LA PREGUNTA #2 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
-    
+
     <!--    ESTA ES LA PREGUNTA #3 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
-    
-    <div data-role="page" id="pregunta3" class = "pregunta">
-        
+
+    <div data-role="page" id="pregunta3" class="pregunta">
+
         <div data-role="main" class="ui-content">
-            <center><p id = "textoPregunta">¿Cual es el número de la ley de transito de Nicaragua?</p></center>
             <center>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onclick="esFalso()">Ley 411</a>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onClick="esFalse()">Ley 421</a>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onClick="esCorrecto()">Ley 431</a>
-                <a href="#alerta" class = "ui-btn ui-corner-all ui-shadow" onClick="esFalso()">Ley 441</a>
+                <p id="textoPregunta">¿Cual es el número de la ley de transito de Nicaragua?</p>
+            </center>
+            <center>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onclick="esFalso(), cambiarPregunta()">Ley 411</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esFalse(), cambiarPregunta()">Ley 421</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esCorrecto(), cambiarPregunta()">Ley 431</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esFalso(), cambiarPregunta()">Ley 441</a>
             </center>
         </div>
 
     </div>
-    
-    <div data-role="page" data-dialog="true" id="alerta">
+
+    <!--    ESTA ES LA PREGUNTA #3 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
+
+    <!--    ESTA ES LA PREGUNTA #4 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
+
+    <div data-role="page" id="pregunta4" class="pregunta">
+
         <div data-role="main" class="ui-content">
-            <center><p id = "textoAlerta">Placeholder</p></center>
             <center>
-                <a href="#pregunta1" class = "ui-btn ui-corner-all ui-shadow ui-btn-inline" id = "buttonSiguiente" onclick="cambiarPregunta()">Siguiente pregunta</a>
+                <p id="textoPregunta">¿El rojo es un color?</p>
+            </center>
+            <center>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onclick="esFalso(), cambiarPregunta()">No, es un animal</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esCorrecto(), cambiarPregunta()">Si</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esFalso(), cambiarPregunta()">Todo mundo sabe que el rojo es una enfermedad</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esFalso(), cambiarPregunta()">Simplemente, no</a>
             </center>
         </div>
+
     </div>
-    
-    <!--    ESTA ES LA PREGUNTA #3 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
-    
+
+    <!--    ESTA ES LA PREGUNTA #4 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
+
+    <!--    ESTA ES LA PREGUNTA #5 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
+
+    <div data-role="page" id="pregunta5" class="pregunta">
+
+        <div data-role="main" class="ui-content">
+            <center>
+                <p id="textoPregunta">¿Cual es mejor Perro o Gato?</p>
+            </center>
+            <center>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onclick="esFalso(), cambiarPregunta()">Gato</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esCorrecto(), cambiarPregunta()">Perro, obviamente</a>
+
+            </center>
+        </div>
+
+    </div>
+
+    <!--    ESTA ES LA PREGUNTA #5 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
+
+    <!--    ESTA ES LA PREGUNTA #6 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
+
+    <div data-role="page" id="pregunta6" class="pregunta">
+
+        <div data-role="main" class="ui-content">
+            <center>
+                <p id="textoPregunta">¿Por que lado se debe adelantar en carretera?</p>
+            </center>
+            <center>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onclick="esFalso(), cambiarPregunta()">Por arriba</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esFalso(), cambiarPregunta()">Por abajo</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esCorrecto(), cambiarPregunta()">Por la izquierda</a>
+                <a href="#alerta" class="ui-btn ui-corner-all ui-shadow" onClick="esFalso(), cambiarPregunta()">Por la derecha</a>
+            </center>
+        </div>
+
+    </div>
+
+    <!--    ESTA ES LA PREGUNTA #6 CON SUS RESPECTIVAS ALERTAS EN CASO DE QUE SEA CORRECTA O INCORRECTA LA RESPUESTA-->
+
     <script>
-        
         var puntaje = 0;
-        var preguntas = [
-            "¿Pregunta1?",
-            "¿Pregunta2?",
-            "¿Pregunta3?",
-            "¿Pregunta4?",
-            "¿Pregunta5?"
-//            "¿Pregunta6?",
-//            "¿Pregunta7?",
-//            "¿Pregunta8?",
-//            "¿Pregunta9?",
-//            "¿Pregunta10?",
-//            "¿Pregunta11?",
-//            "¿Pregunta12?",
-//            "¿Pregunta14?",
-//            "¿Pregunta15?",
-//            "¿Pregunta16?",
-//            "¿Pregunta17?",
-//            "¿Pregunta18?",
-//            "¿Pregunta19?",
-//            "¿Pregunta20?"
-        ];
-        
-        function esCorrecto() 
-        {
+
+        function esCorrecto() {
             puntaje = puntaje + 1;
             document.getElementById("textoPuntaje").innerHTML = "Puntaje: " + puntaje;
             document.getElementById("textoAlerta").innerHTML = "¡Es correcto!";
         }
-        
-        function esFalso() 
-        {
-            if (puntaje <= 0) {
-                document.getElementById("textoPuntaje").innerHTML = "Perdiste... ";
-                document.getElementById("textoAlerta").innerHTML = "Perdiste";
-                document.getElementById("buttonSiguiente").innerHTML = "Volver al inicio";
-                document.getElementById("buttonSiguiente").href = "#paginaPrincipal";
-            } else {
-                puntaje = puntaje - 1;
-                document.getElementById("textoPuntaje").innerHTML = "Puntaje: " + puntaje;
-                document.getElementById("textoAlerta").innerHTML = "Te equivocaste...";    
-            }
-            
+
+        function esFalso() {
+            puntaje = puntaje - 1;
+            document.getElementById("textoPuntaje").innerHTML = "Puntaje: " + puntaje;
+            document.getElementById("textoAlerta").innerHTML = "Te equivocaste...";
         }
-        
+
+        function checkPuntaje() {
+            if (puntaje < 0) {
+                document.getElementById("buttonSiguiente").href = "#paginaPrincipal";
+            }
+        }
+
         function ponerPuntaje0() {
             puntaje = 0;
             document.getElementById("textoPuntaje").innerHTML = "Puntaje: " + puntaje;
         }
-        
+
         function ponerAlertaDefault() {
             document.getElementById("textoPuntaje").innerHTML = "Puntaje: " + puntaje;
             document.getElementById("buttonSiguiente").innerHTML = "Siguiente pregunta";
             document.getElementById("buttonSiguiente").href = "#pregunta2";
         }
-        
-        function cambiarPregunta() {
-            var randomIndex = Math.floor((Math.random() * 5) + 0);
-            document.getElementById("textoPregunta").innerHTML = preguntas[randomIndex];
+
+        function ponerHeaderPuntaje() {
+            document.getElementById("textoPuntaje").innerHTML = "Puntaje: " + puntaje;
+            document.getElementById("buttonSalir").innerHTML = "Rendirse";
         }
-        
+
+        function cambiarPregunta() {
+            var randomIndex = Math.floor((Math.random() * 6) + 1);
+            if (puntaje >= 0) {
+                if (randomIndex == 1) {
+                    document.getElementById("buttonSiguiente").href = "#pregunta1";
+                    document.getElementById("buttonIniciar").href = "#pregunta1";
+                } else if (randomIndex == 2) {
+                    document.getElementById("buttonSiguiente").href = "#pregunta2";
+                    document.getElementById("buttonIniciar").href = "#pregunta2";
+                } else if (randomIndex == 3) {
+                    document.getElementById("buttonSiguiente").href = "#pregunta3";
+                    document.getElementById("buttonIniciar").href = "#pregunta3";
+                } else if (randomIndex == 4) {
+                    document.getElementById("buttonSiguiente").href = "#pregunta4";
+                    document.getElementById("buttonIniciar").href = "#pregunta4";
+                } else if (randomIndex == 5) {
+                    document.getElementById("buttonSiguiente").href = "#pregunta5";
+                    document.getElementById("buttonIniciar").href = "#pregunta5";
+                } else if (randomIndex == 6) {
+                    document.getElementById("buttonSiguiente").href = "#pregunta6";
+                    document.getElementById("buttonIniciar").href = "#pregunta6";
+                }
+            } else if (puntaje < 0) {
+                document.getElementById("buttonSiguiente").href = "#paginaPrincipal";
+                document.getElementById("textoPuntaje").innerHTML = "Transiguia Trivia Game";
+                document.getElementById("buttonSiguiente").innerHTML = "Volver al menú principal";
+                document.getElementById("textoAlerta").innerHTML = "PERDISTE PAPU";
+            }
+        }
+
+        function salirApp() {
+            navigator.app.exitApp();
+        }
     </script>
-   
+
     <script>
         /* Wait until device is ready to re-assign Back button */
         document.addEventListener("deviceready", onDeviceReady, false);
+
         function onDeviceReady() {
             document.addEventListener("backbutton", onBackKeyPress, false);
         }
+
         function onBackKeyPress() {
             /* If the current page is the login page, disable the button completely (aka do nothing) */
-            if ($.mobile.activePage.attr('id') == 'pregunta1') {
-            }
+            if ($.mobile.activePage.attr('id') == 'pregunta1') {}
 
             /* Else, execute log off code */
             else {
                 if (confirm("¿Estas seguro que quieres salir?")) {
                     /* Here is where my AJAX code for logging off goes */
                     navigator.app.exitApp();
-                }
-                else {
+                } else {
                     return false;
                 }
             }
         }
     </script>
 </body>
+
 </html>
